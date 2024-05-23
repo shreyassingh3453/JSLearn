@@ -30,6 +30,7 @@
 //   return c;
 // });
 // console.log(arr);
+
 //Q1 Find the second largest number in an array
 //Input : [12,35,1,10,34,1,34] --O/P: 34
 // INput : [10,5,10] O/P : 5
@@ -63,6 +64,7 @@
 // );
 // let result = a - b;
 // console.log(result.toString());
+
 //Q2 Rotate Array by K
 //Given an integer array nums rotate it right by k steps
 //Input : [1,2,3,4,5,6,7] k=3 ----> Output: [7,1,2,3,4,5,6] k=1 - > [6,7,1,2,3,4,5] k=2 -> [5,6,7,1,2,3,4] k=3
@@ -81,6 +83,7 @@
 //   return nums;
 // }
 // console.log(rotateArray([1, 2, 3, 4, 5, 6, 7], 3));
+
 //Q3 - Remove Duplicates Given an integer array nums sorted in non-decreasing order, your task is to remove the duplicates in-place.
 //Each unique element should appear only once, and the relative order of the elements should be preserved.
 //After removing the duplicates, return the number of unique elements in nums.
@@ -95,5 +98,49 @@
 //   }
 //   return nums;
 // }
-
 // console.log(removeDuplicates([0, 0, 1, 1, 1, 2, 2, 3, 3, 4]));
+
+//Q4 Maximum subarray problem
+//input [-2,1,-3,4,-1,2,1,-5,4] --> Output :6 [4,-1,2,1]
+//Input [5,4,-1,7,8] --> output : 23 [5,4,-1,7,8]
+
+//Brute Force :
+// function maxSubArray(nums) {
+//   let maxSum = nums[0];
+//   let start = 0;
+//   let end = 0;
+
+//   for (let i = 0; i < nums.length; i++) {
+//     let currSum = 0;
+//     for (let j = i; j < nums.length; j++) {
+//       currSum = currSum + nums[j];
+//       if (currSum > maxSum) {
+//         maxSum = currSum;
+//         start = i;
+//         end = j;
+//       }
+//     }
+//   }
+//   return {
+//     "Maximum Sum": maxSum,
+//     Array: nums.slice(start, end + 1),
+//   };
+// }
+// console.log(maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]));
+//Using Kadane Algorithm :
+function kadaneAlgo(nums) {
+  let maxSum = nums[0];
+  let currSum = 0;
+  for (let i = 0; i < nums.length; i++) {
+    currSum += nums[i];
+    if (currSum > maxSum) {
+      maxSum = currSum;
+    }
+    if (currSum < 0) {
+      currSum = 0;
+    }
+  }
+  return maxSum;
+  maxSum.map();
+}
+console.log(kadaneAlgo([5, 4, -1, 7, 8]));
